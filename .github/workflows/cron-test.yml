@@ -17,8 +17,7 @@ jobs:
       - name: generate label
         id: release_tag
         run: |
-          today=$(date +'%Y.%m.%d.%H.%M.%S')
-          echo $today
+          echo "today=$(date +'%Y.%m.%d.%H.%M.%S')" >> $GITHUB_OUTPUT
       - name: curl date
         run: curl -O https://www.nict.go.jp/JST/JST5.html
       - name: debug
