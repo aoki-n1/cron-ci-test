@@ -24,8 +24,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          name: ${{ steps.release_tag }}
-          tag_name: ${{ steps.release_tag }}
+          name: ${{ steps.release_tag.outputs.today }}
+          tag_name: ${{ steps.release_tag.outputs.today }}
           files: |
             JST5.html
 
