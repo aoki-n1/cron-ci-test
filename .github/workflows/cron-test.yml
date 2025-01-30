@@ -5,6 +5,7 @@ on:
       - main
       - develop
   schedule:
+    #        m h d m dow
     - cron: "* * * * *"
   workflow_dispatch:
 jobs:
