@@ -1,0 +1,15 @@
+name: Scheduled build
+
+on:
+  schedule:
+    # 月曜日の 11:00 (JST) に処理を実行する。
+    # UTC の 02:00 は JST だと 11:00 。
+    - cron: '* * * * *'
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl
+        run: curl https://www.nict.go.jp/JST/JST5.html
