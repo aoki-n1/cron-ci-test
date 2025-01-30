@@ -1,15 +1,47 @@
-name: Scheduled build
-
+name: First Cron Job
 on:
+  push:
+    branches:
+      - main
+      - develop
   schedule:
-    # 月曜日の 11:00 (JST) に処理を実行する。
-    # UTC の 02:00 は JST だと 11:00 。
-    - cron: '* * * * *'
-
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
 jobs:
-  build:
-    name: build
+  cron:
     runs-on: ubuntu-latest
     steps:
-      - name: curl
-        run: curl https://www.nict.go.jp/JST/JST5.html
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+#name: Scheduled build
+#
+#on:
+#  schedule:
+#    # 月曜日の 11:00 (JST) に処理を実行する。
+#    # UTC の 02:00 は JST だと 11:00 。
+#    - cron: '* * * * *'
+
+#permissions:
+#  contents: write
+
+#jobs:
+#  build:
+#    name: build
+#   runs-on: ubuntu-latest
+#    steps:
+#      - name: curl
+#        run: curl https://www.nict.go.jp/JST/JST5.html
+#      - name: generate label
+#        id: release_tag
+#        run: |
+#          today=$(date +'%Y.%m.%d.%H.%M.%S')
+#          echo $today
+#      - name: Create Release
+#        run: |
+#          gh release create [ta --generate-notes [attachment-file]
+#        env:
+#          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
